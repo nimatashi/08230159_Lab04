@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning Journey</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    
+
+</head>
+<body>
+    <header class="header">
+        <h1>My Learning Journey 🚀</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About Me</a>
+        </nav>
+    </header>
+
+    <main class="content">
+        <!-- Introduction -->
+        <section class="intro">
+            <h2>Welcome to My Learning Journey</h2>
+            <p>This page showcases my journey from mastering basic web technologies to building full-stack applications with Django. 
+                Each milestone reflects my growth as a developer and my dedication to learning new skills and solving real-world problems.</p>
+        </section>
+
+        <!-- Learning Steps Table -->
+        <section class="table-section">
+            <h2>My Learning Steps</h2>
+            <div class="table-container">
+                <table class="learning-table">
+                    <thead>
+                        <tr>
+                            <th>Step No.</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for step in steps %}
+                        <tr>
+                            <td>{{ step.step_no }}</td>
+                            <td>{{ step.title }}</td>
+                            <td>{{ step.description }}</td>
+                            <td>{{ step.date|date:"F j, Y" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="empty">No learning steps added yet. Please add one from the Admin page.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+           <!-- Admin Proof Section -->
+    <section class="admin-proof">
+        <h2>Admin Proof 📂</h2>
+        <p>Following are my admin proofs:</p>
+        <div class="proof-images">
+            <div class="proof-item">
+                <h3>About Me Admin</h3>
+                <img src="{% static 'images/about_me_admin.png' %}" alt="About Me Admin" class="admin-image">
+            </div>
+            <div class="proof-item">
+                <h3>Learning Step Admin</h3>
+                <img src="{% static 'images/learning_step_admin.png' %}" alt="Learning Step Admin" class="admin-image">
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <p>© {{ year }} My Learning Journey | Built with Django 🐍</p>
+    </footer>
+</body>
+</html>
